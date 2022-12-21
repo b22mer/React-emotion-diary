@@ -1,3 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
+body {
+    background-color: #f6f6f6;
+    display: flex;
+    /* 가로축 가운데 */
+    justify-content: center;
+    /* 세로축 가운데 */
+    align-items: center;
+    font-family: 'Nanum Pen Script', cursive;
+    /* 실제크기의 100% */
+    min-height: 100vh;
+    margin: 0px;
+}
+
+
+/* 650 이상이면  */
+
+@media(min-width: 650px) {
+    .App {
+        width: 640px;
+    }
+}
+
+
+/* 650 이하이면  */
+
+@media(max-width: 650px) {
+    .App {
+        width: 90vw;
+    }
+}
+
+#root {
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
 .App {
-    padding: 20px;
+    min-height: 100vh;
+    padding-left: 20px;
+    padding-right: 20px;
 }
