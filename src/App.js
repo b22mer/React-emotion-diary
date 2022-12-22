@@ -5,7 +5,7 @@ import Edit from './pages/Edit';
 import New from './pages/New';
 import Diary from './pages/Diary';
 import './App.css';
-import { useReducer, useRef } from 'react';
+import React, { useReducer, useRef } from 'react';
 
 
 
@@ -39,6 +39,8 @@ const reducer=(state, action)=>{
   }
   return newState;
 }
+export const DiaryStateContext=React.createContext();
+export const DiaryDispatchContext=React.createContext();
 
 function App() {
 
@@ -80,6 +82,8 @@ const onEdit= (targetId, date,content, emotion)=>{
 
 
   return (
+<DiaryStateContext.Provider value={data}>
+<DiaryDispatchContext.Provider value={{onCreate, onRemove, onEdit}}>
 <BrowserRouter>
     <div className="App">
       <Routes>
@@ -91,6 +95,8 @@ const onEdit= (targetId, date,content, emotion)=>{
      
     </div>
 </BrowserRouter>
+</DiaryDispatchContext.Provider>
+</DiaryStateContext.Provider>
   );
 }
 
