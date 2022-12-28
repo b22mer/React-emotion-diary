@@ -80,7 +80,7 @@ const dummyData=[
 
 
 function App() {
-console.log(new Date().getTime());
+//console.log(new Date().getTime());
 const [data, dispatch]=useReducer(reducer,dummyData)
 const dataId=useRef();
 
