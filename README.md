@@ -11,3 +11,13 @@ index.js의 React.StrictMode 때문 이었다. 이 부분을 제거해주면 컴
 react 툴로 겹치는 키가 있는지 확인하고 수정해나가야한다. 
 
 ### 12월 31일을 택했을때, new Date 인자에 0 0 0 설정이 아닌, 23, 59,59 설정
+
+### Local Storage,Session Storage, Web Storage API
+브라우저에 키/벨류 쌍으로 저장
+
+session st: 세션 한정, 즉 브라우저 또는 탭이 닫힐때까지만 데이터를 저장, 데이터를 절대 서버로 전송 x, 저장 공간 쿠기보다 큼
+local st: 브라우저를 닫아도 데이터가 남아있음, 유효기간 없이 데이터를 저장, js사용하거나 브라우저 캐시또는 로컬 저장 데이터를 지워야 사라짐, 저장 공간이 제일큼
+
+객체 저장 방식 JSON.stringify({value: 30}), 반대로 꺼내올땐  JSON.parse(localStorage.getItem("item3"));
+기본적으로 로컬스토리지에 저장되는 값은 문자열로 바껴서 들어감
+
