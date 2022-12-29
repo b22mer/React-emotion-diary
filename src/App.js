@@ -5,7 +5,7 @@ import Edit from './pages/Edit';
 import New from './pages/New';
 import Diary from './pages/Diary';
 import './App.css';
-import React, { useReducer, useRef } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 
 
 
@@ -37,52 +37,45 @@ const reducer=(state, action)=>{
     default:
       return state;
   }
+  localStorage.setItem("diary", JSON.stringify(newState))
   return newState;
 }
 export const DiaryStateContext=React.createContext();
 export const DiaryDispatchContext=React.createContext();
 
-const dummyData=[
-  {
-    id:1,
-    emotion:1,
-    content: "오늘의 일기 1",
-    date: 1671700139057
-  },
-  {
-    id:2,
-    emotion:3,
-    content: "오늘의 일기 2",
-    date: 1671700139058
-  },
-  {
-    id:3,
-    emotion:2,
-    content: "오늘의 일기 3",
-    date: 1671700139059
-  },
-  {
-    id:4,
-    emotion:5,
-    content: "오늘의 일기 4",
-    date: 1671700139060
-  },
-
-  {
-    id:5,
-    emotion:4,
-    content: "오늘의 일기 5",
-    date: 1671700139061
-  },
-
-
-]
-
-
 function App() {
+
+// 저장방법
+// useEffect(()=>{
+//   localStorage.setItem("diary", 10);
+//   localStorage.setItem("item2", "20");
+//   localStorage.setItem("item3", JSON.stringify({value: 30}));
+// }, [])
+
+// 불러오는 방법
+// useEffect(()=>{
+// const item1= localStorage.getItem("item1");
+// const item2= localStorage.getItem("item2");
+// const item3= JSON.parse(localStorage.getItem("item3"));
+// console.log({item1,item2,item3})
+
+// }, [])
+
+
 //console.log(new Date().getTime());
-const [data, dispatch]=useReducer(reducer,dummyData)
-const dataId=useRef(6);
+const [data, dispatch]=useReducer(reducer,[])
+
+useEffect(()=>{
+  const localData=localStorage.getItem('diary')
+  console.log(localData);
+  if(localData){
+    const diaryList= JSON.parse(localData).sort((a,b)=>parseInt(b.id)- parseInt(a.id));
+    dataId.current = parseInt(diaryList[0].id)+1;
+
+    dispatch({type:"INIT", data: diaryList})
+  }
+},[]);
+const dataId=useRef(0);
 
 //CREATE
 const onCreate=(date,content, emotion)=>{
