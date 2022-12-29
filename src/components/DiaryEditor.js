@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {DiaryDispatchContext} from "./../App"
 import EmotionItem from "./EmotionItem";
@@ -16,9 +16,10 @@ const DiaryEditor = ({isEdit, originData})=>{
     const [emotion, setEmotion]=useState(3);
     const {onCreate, onEdit, onRemove}=useContext(DiaryDispatchContext);
     const [date, setDate]= useState(getStringDate(new Date()));
-    const handleClickEmote = emotion =>{
+    // 최적화 2
+    const handleClickEmote = useCallback(emotion =>{
         setEmotion(emotion);
-    }
+    },[])
     const navigate= useNavigate();
    
     const handleSubmit= ()=>{
