@@ -11,7 +11,7 @@
 - VSCODE - create-react-app
 - node.js v 18.12.1
 - firebase
-- npm start (localhost: 8080)
+- npm start (localhost: 3000)
 
 ## 프로젝트 기능
 
